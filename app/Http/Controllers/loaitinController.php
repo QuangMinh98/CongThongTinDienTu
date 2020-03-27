@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\loaitin;
+use App\tintuc;
 
 class loaitinController extends Controller
 {
@@ -47,5 +48,12 @@ class loaitinController extends Controller
     	$loaitin->tenkhongdau = convert_vi_to_en($request->tenloaitin);
     	$loaitin->save();
     	return redirect()->route('loaitin')->with('thongbao','Đã cập nhật thành công.');
+    }
+
+    public function getMenu(){
+    	$menu = loaitin::where('menu','1')->get();
+    	$gioithieu = loaitin::where('gioithieu','1')->firstOrFail();
+    	$menuGioiThieu = tintuc::where('idLoaiTin',$gioithieu->id)->get();
+    	return view('master.navigation',['menu'=>$menu,'gioithieu'=>$menuGioiThieu]);
     }
 }

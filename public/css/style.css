@@ -24,10 +24,6 @@ li{
 	padding: 0px;
 }
 
-.navigation ul li a{
-	font-size: 18px;
-}
-
 .main{
 	background: #fff;
 	width: 80%;
@@ -297,4 +293,19 @@ section{
 
 .btn{
 	width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    font-size: initial;
+}
+
+.navbar-nav .dropdown-menu {
+    margin-top: 9px;
+    background: #077bff;
+}
+
+.dropdown-item{
+	color: #fff;
+	font-size: inherit;
 }

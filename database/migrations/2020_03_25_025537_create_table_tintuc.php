@@ -22,6 +22,7 @@ class CreateTableTintuc extends Migration
             $table->mediumText('tomtat');
             $table->mediumText('noidung');
             $table->integer('slide');
+            $table->integer('thongbaochinh');
             $table->unsignedBigInteger('idLoaiTin');
             $table->foreign('idLoaiTin')->references('id')->on('loaitin');
         });

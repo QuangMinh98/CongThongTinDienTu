@@ -8,7 +8,22 @@
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" href="#"><i class="fas fa-home"></i></a>
-				</li>    
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						Giới Thiệu
+					</a>
+					<div class="dropdown-menu">
+						@foreach($gioithieu as $gt)
+						<a class="dropdown-item" href="#">{{$gt->tieude}}</a>
+						@endforeach
+					</div>
+				</li>
+				@foreach($menu as $list)
+				<li class="nav-item">
+					<a class="nav-link" href="#">{{$list->tenloaitin}}</a>
+				</li>
+				@endforeach     
 			</ul>
 		</div>  
 	</nav>

@@ -150,4 +150,5 @@
 	})
 </script>
 <script type="text/javascript" src="{{asset('js/changeLoaiTin.js')}}"></script>
+@include('master.script')
 @endsection

@@ -29,4 +29,15 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::get('menu','loaitinController@changeMenu')->name('changeMenu');
 		Route::get('gioithieu','loaitinController@changeGioiThieu')->name('changeGioiThieu');
 	});
+	Route::group(['prefix'=>'tintuc'],function(){
+		Route::get('danhsach','tintucController@getList')->name('tintuc');
+		Route::get('themtin','tintucController@showAdd')->name('showAddTin');
+		Route::post('add','tintucController@addTin')->name('addTin');
+		Route::get('suatin/{id}','tintucController@showEdit')->name('showEditTin');
+		Route::post('edit','tintucController@editTin')->name('editTin');
+	});
 });
+Route::get('menu','loaitinController@getMenu')->name('menu');
+
+
+
