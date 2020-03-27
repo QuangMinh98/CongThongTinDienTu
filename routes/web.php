@@ -20,3 +20,13 @@ Route::get('/', function () {
 Route::get('demo',function(){
 	return view('admin.theloai.danhsach');
 });
+
+Route::group(['prefix'=>'admin'],function(){
+	Route::group(['prefix'=>'loaitin'],function(){
+		Route::get('danhsach','loaitinController@getList')->name('loaitin');
+		Route::post('add','loaitinController@addLoaiTin')->name('addLoaiTin');
+		Route::post('edit','loaitinController@editLoaiTin')->name('editLoaiTin');
+		Route::get('menu','loaitinController@changeMenu')->name('changeMenu');
+		Route::get('gioithieu','loaitinController@changeGioiThieu')->name('changeGioiThieu');
+	});
+});

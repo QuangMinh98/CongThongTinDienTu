@@ -18,8 +18,8 @@ class CreateTableLoaitin extends Migration
             $table->timestamps();
             $table->string('tenloaitin');
             $table->string('tenkhongdau');
-            $table->unsignedBigInteger('idTheLoai');
-            $table->foreign('idTheLoai')->references('id')->on('theloai');
+            $table->integer('menu');
+            $table->integer('gioithieu');
         });
     }
 

@@ -290,6 +290,11 @@ section{
 	padding: 20px 0px; 
 }
 
+.form-edit{
+	display: none;
+	padding: 20px 0px;
+}
+
 .btn{
 	width: 100%;
 }
