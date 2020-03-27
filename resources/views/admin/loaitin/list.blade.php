@@ -84,16 +84,16 @@
 										<td>{{$list->tenkhongdau}}</td>
 										<td>
 											@if($list->menu == 0)
-											<input type="checkbox" name="" id="menu">
+											<input type="checkbox" name="" class="menu" value="{{$list->id}}">
 											@else
-											<input type="checkbox" name="" id="menu" checked>
+											<input type="checkbox" name="" class="menu" value="{{$list->id}}" checked>
 											@endif
 										</td>
 										<td>
 											@if($list->gioithieu == 0)
-											<input type="checkbox" name="" id="gioithieu">
+											<input type="checkbox" name="" class="gioithieu" value="{{$list->id}}">
 											@else
-											<input type="checkbox" name="" id="gioithieu" checked>
+											<input type="checkbox" name="" class="gioithieu" value="{{$list->id}}" checked>
 											@endif
 										</td>
 										<td><a href="javascript:" data-id="{{$list->id}}" data-name="{{$list->tenloaitin}}"  class="badge badge-success edit-btn">Edit</a>
@@ -121,22 +121,33 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#add').click(function(){
-			$('.form-add').slideDown();
+		$('.menu').click(function(){
+			id = $(this).val();
+			menu = 0;
+			if($(this).prop('checked')){
+				menu = 1;
+			}
+			else{
+				menu = 0;
+			}
+			$.get("{{route('changeMenu')}}",{id:id,menu:menu}).fail(function(){
+				alert('Không thể hoàn thành thao tác');
+			});
 		})
-		$('#cancel').click(function(){
-			$('.form-add').slideUp();
-		})
-		$('.edit-btn').click(function(){
-			id = $(this).data('id');
-			name = $(this).data('name');
-			$('#id').val(id);
-			$('#edit-name').val(name);
-			$('.form-edit').slideDown();
-		})
-		$('#cancel-edit').click(function(){
-			$('.form-edit').slideUp();
+		$('.gioithieu').click(function(){
+			id = $(this).val();
+			gioithieu = 0;
+			if($(this).prop('checked')){
+				gioithieu = 1;
+			}
+			else{
+				gioithieu = 0;
+			}
+			$.get("{{route('changeGioiThieu')}}",{id:id,gioithieu:gioithieu}).fail(function(){
+				alert('Không thể hoàn thành thao tác');
+			});
 		})
 	})
 </script>
+<script type="text/javascript" src="{{asset('js/changeLoaiTin.js')}}"></script>
 @endsection
