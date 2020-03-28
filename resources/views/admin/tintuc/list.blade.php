@@ -78,7 +78,7 @@
 		</div>
 		<div class="right-panel">
 			@include('master.login')
-			@include('master.thongbaochinh')
+			@include('master.danhmuc')
 			@include('master.video')
 		</div>
 	</div>
@@ -88,4 +88,34 @@
 
 @section('script')
 	@include('master.script')
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.check-slide').click(function(){
+				id = $(this).val();
+				slide = 0;
+				if($(this).prop('checked')){
+					slide = 1;
+				}
+				else{
+					slide = 0;
+				}
+				$.get("{{route('changeSlide')}}",{id:id,slide:slide}).fail(function(){
+					alert('Không thể hoàn thành thao tác');
+				});
+			})
+			$('.thongbao').click(function(){
+				id = $(this).val();
+				thongbaochinh = 0;
+				if($(this).prop('checked')){
+					thongbaochinh = 1;
+				}
+				else{
+					thongbaochinh = 0;
+				}
+				$.get("{{route('changeThongBao')}}",{id:id,thongbaochinh:thongbaochinh}).fail(function(){
+					alert('Không thể hoàn thành thao tác');
+				});
+			})
+		})
+	</script>
 @endsection

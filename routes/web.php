@@ -35,9 +35,12 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::post('add','tintucController@addTin')->name('addTin');
 		Route::get('suatin/{id}','tintucController@showEdit')->name('showEditTin');
 		Route::post('edit','tintucController@editTin')->name('editTin');
+		Route::get('changeSlide','tintucController@changeSlide')->name('changeSlide');
+		Route::get('changeThongBao','tintucController@changeThongBao')->name('changeThongBao');
 	});
 });
 Route::get('menu','loaitinController@getMenu')->name('menu');
-
-
+Route::get('trangchu','tintucController@getHome')->name('home');
+Route::get('tintuc/{tieude}','tintucController@viewTin')->name('viewTin');
+Route::get('loaitin/{tieude}','tintucController@listNews')->name('listNews');
 

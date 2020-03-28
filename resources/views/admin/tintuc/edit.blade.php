@@ -70,7 +70,7 @@
 		</div>
 		<div class="right-panel">
 			@include('master.login')
-			@include('master.thongbaochinh')
+			@include('master.danhmuc')
 			@include('master.video')
 		</div>
 	</div>
