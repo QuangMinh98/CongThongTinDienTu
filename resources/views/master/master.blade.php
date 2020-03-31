@@ -16,10 +16,10 @@
 	<div class="container">
 		<header class="header">
 			<div class="logo">
-				<img src="https://www.khanhhoa.gov.vn/Resources/ImagesPortal/HomePage/imgs/Logo.png">
+				<img src="{{asset('img/logo.png')}}">
 			</div>
 			<div id="nav">
-				
+
 			</div>
 		</header>
 		@yield('noidung')

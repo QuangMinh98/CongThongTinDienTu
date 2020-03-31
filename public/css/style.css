@@ -11,7 +11,6 @@ li{
 }
 
 .header .logo{
-	height: 123px;
 	padding-top:30px;
 	padding-left: 20px;
 }
@@ -27,11 +26,11 @@ li{
 .main{
 	background: #fff;
 	width: 80%;
-	padding-top: 20px; 
+	padding-top: 20px;
 }
 
 .main-slide{
-	padding: 0px 10px; 
+	padding: 0px 10px;
 }
 .left-panel{
 	height: 500px;
@@ -96,7 +95,7 @@ li{
     box-shadow: 0px 1px 2px 0px #B6B6B6;
     border-left: #bfc0b8 1px solid;
     border-right: #bfc0b8 1px solid;
-    border-bottom: #999 1px solid; 
+    border-bottom: #999 1px solid;
 }
 
 .type{
@@ -116,7 +115,7 @@ li{
 }
 
 .content1{
-	margin-top: 40px; 
+	margin-top: 40px;
 }
 
 .hot-new{
@@ -231,7 +230,7 @@ section{
 .list-new img{
 	width: 7px;
 	height: 7px;
-	margin-right: 7px; 
+	margin-right: 7px;
 }
 
 .slide-height{
@@ -251,7 +250,7 @@ section{
     border-radius: 2px;
     box-shadow: 0px 1px 2px 0px #B6B6B6;
     padding: 10px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .news img{
@@ -285,7 +284,7 @@ section{
 
 .form-add{
 	display: none;
-	padding: 20px 0px; 
+	padding: 20px 0px;
 }
 
 .form-edit{

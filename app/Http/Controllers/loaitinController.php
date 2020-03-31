@@ -8,8 +8,13 @@ use App\tintuc;
 
 class loaitinController extends Controller
 {
-    public function getList(){
-    	$loaitin = loaitin::all();
+    public function getList(Request $request){
+      if(isset($request->search)){
+        $loaitin = loaitin::search($request->search);
+      }
+      else{
+      	$loaitin = loaitin::all();
+      }
     	return view('admin.loaitin.list',['loaitin'=>$loaitin]);
     }
 
@@ -30,6 +35,10 @@ class loaitinController extends Controller
     	return redirect()->route('loaitin')->with('thongbao','Đã thêm thành công.');
     }
 
+    public function delLoaiTin(Request $request){
+      $loaitin = loaitin::del($request->id);
+    }
+
     public function changeMenu(Request $request){
     	$loaitin = loaitin::find($request->id);
     	$loaitin->menu = $request->menu;
@@ -39,7 +48,7 @@ class loaitinController extends Controller
     public function changeGioiThieu(Request $request){
     	$loaitin = loaitin::find($request->id);
     	$loaitin->gioithieu = $request->gioithieu;
-    	$loaitin->save();	
+    	$loaitin->save();
     }
 
     public function editLoaiTin(Request $request){

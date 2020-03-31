@@ -4,7 +4,7 @@
 <section>
 	<div class="row" style="margin: 0;">
 		<div class="main">
-			<div class="content1">			
+			<div class="content1">
 				<div class="main-panel">
 					<div class="box">
 						<h3 class="type">Tin Tức</h3>
@@ -12,7 +12,7 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="search">
-										<form action="" method="get">
+										<form action="{{route('tintuc')}}" method="get">
 											<div class="form-group">
 												<label for="search">Search:</label>
 												<input type="search" name="search" class="form-control form-control-sm">
@@ -64,7 +64,7 @@
 											</td>
 											<td>{{$list->tenloaitin}}</td>
 											<td><a href="{{route('showEditTin',['id'=>$list->id])}}"  class="badge badge-success edit-btn">Edit</a>
-												<a href="javascript:" class="badge badge-danger delete-btn">Delete</a>
+												<a href="javascript:" class="badge badge-danger delete-btn" data-id="{{$list->id}}">Delete</a>
 											</td>
 										</tr>
 										@endforeach
@@ -115,6 +115,16 @@
 				$.get("{{route('changeThongBao')}}",{id:id,thongbaochinh:thongbaochinh}).fail(function(){
 					alert('Không thể hoàn thành thao tác');
 				});
+			})
+			$('.delete-btn').click(function(){
+				id = $(this).data('id');
+				if (confirm("Dữ liệu xoá sẽ không khôi phục được. Bạn có thật sự muốn xoá?")) {
+					$.post('{{route('delTin')}}',{id:id,_token:"{{csrf_token()}}"}).done(function(){
+						location.reload();
+					}).fail(function(){
+						alert('Không thể hoàn thành thao tác này');
+					})
+	      }
 			})
 		})
 	</script>

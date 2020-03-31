@@ -23,8 +23,13 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{route('listNews',['tieude'=>$list->tenkhongdau.'-'.$list->id])}}">{{$list->tenloaitin}}</a>
 				</li>
-				@endforeach     
+				@endforeach
+				@if(Auth::check())
+				<li class="nav-item">
+					<a class="nav-link" href="{{route('loaitin')}}">Quản Trị</a>
+				</li>
+				@endif
 			</ul>
-		</div>  
+		</div>
 	</nav>
 </div>

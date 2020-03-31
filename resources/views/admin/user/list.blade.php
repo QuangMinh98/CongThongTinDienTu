@@ -21,17 +21,29 @@
 									</div>
 								</div>
 								<div class="col-md-3">
-									<button id="add" class="btn btn-primary btn-md" style="margin-top: 30px; width: auto; "><i class="fas fa-plus-circle"></i>&nbspThêm Thể Loại</button>
+									<button id="add" class="btn btn-primary btn-md" style="margin-top: 30px; width: auto; "><i class="fas fa-plus-circle"></i>&nbspThêm Người Dùng</button>
 								</div>
 							</div>
 							<div class="form-add">
-								<form action="{{route('addLoaiTin')}}" method="post">
+								<form action="{{route('addUser')}}" method="post">
 									@csrf
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group">
-												<label for="tentheloai">Tên Loại Tin:</label>
-												<input type="text" name="tenloaitin" class="form-control form-control-sm">
+												<label for="email">Email:</label>
+												<input type="text" name="email" class="form-control form-control-sm">
+											</div>
+										</div>
+                    <div class="col-md-4">
+											<div class="form-group">
+												<label for="name">Username:</label>
+												<input type="text" name="name" class="form-control form-control-sm">
+											</div>
+										</div>
+                    <div class="col-md-4">
+											<div class="form-group">
+												<label for="password">Password:</label>
+												<input type="password" name="password" class="form-control form-control-sm">
 											</div>
 										</div>
 									</div>
@@ -46,14 +58,14 @@
 								</form>
 							</div>
 							<div class="form-edit">
-								<form action="{{route('editLoaiTin')}}" method="post">
+								<form action="{{route('editUser')}}" method="post">
 									@csrf
 									<input type="hidden" name="id" id="id">
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group">
-												<label for="tentheloai">Tên Loại Tin:</label>
-												<input type="text" id="edit-name" name="tenloaitin" class="form-control form-control-sm">
+												<label for="name">Username:</label>
+												<input type="text" id="edit-name" name="name" class="form-control form-control-sm">
 											</div>
 										</div>
 									</div>
@@ -70,33 +82,17 @@
 							<table class="table" style="margin-top: 40px;">
 								<thead class="thead-dark">
 									<tr>
-										<th>Tên Loại Tin</th>
-										<th>Tên Không Dấu</th>
-										<th>Menu</th>
-										<th>Giới Thiệu</th>
+										<th>Email</th>
+										<th>Username</th>
 										<th>Thao Tác</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($loaitin as $list)
+									@foreach($users as $list)
 									<tr>
-										<td>{{$list->tenloaitin}}</td>
-										<td>{{$list->tenkhongdau}}</td>
-										<td>
-											@if($list->menu == 0)
-											<input type="checkbox" name="" class="menu" value="{{$list->id}}">
-											@else
-											<input type="checkbox" name="" class="menu" value="{{$list->id}}" checked>
-											@endif
-										</td>
-										<td>
-											@if($list->gioithieu == 0)
-											<input type="checkbox" name="" class="gioithieu" value="{{$list->id}}">
-											@else
-											<input type="checkbox" name="" class="gioithieu" value="{{$list->id}}" checked>
-											@endif
-										</td>
-										<td><a href="javascript:" data-id="{{$list->id}}" data-name="{{$list->tenloaitin}}"  class="badge badge-success edit-btn">Edit</a>
+										<td>{{$list->email}}</td>
+										<td>{{$list->name}}</td>
+										<td><a href="javascript:" data-id="{{$list->id}}" data-name="{{$list->name}}"  class="badge badge-success edit-btn">Edit</a>
 											<a href="javascript:" class="badge badge-danger delete-btn" data-id="{{$list->id}}">Delete</a>
 										</td>
 									</tr>
@@ -119,46 +115,6 @@
 @endsection
 
 @section('script')
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.menu').click(function(){
-			id = $(this).val();
-			menu = 0;
-			if($(this).prop('checked')){
-				menu = 1;
-			}
-			else{
-				menu = 0;
-			}
-			$.get("{{route('changeMenu')}}",{id:id,menu:menu}).fail(function(){
-				alert('Không thể hoàn thành thao tác');
-			});
-		})
-		$('.gioithieu').click(function(){
-			id = $(this).val();
-			gioithieu = 0;
-			if($(this).prop('checked')){
-				gioithieu = 1;
-			}
-			else{
-				gioithieu = 0;
-			}
-			$.get("{{route('changeGioiThieu')}}",{id:id,gioithieu:gioithieu}).fail(function(){
-				alert('Không thể hoàn thành thao tác');
-			});
-		})
-		$('.delete-btn').click(function(){
-			id = $(this).data('id');
-			if (confirm("Dữ liệu xoá sẽ không khôi phục được. Bạn có thật sự muốn xoá?")) {
-				$.post('{{route('delLoaiTin')}}',{id:id,_token:"{{csrf_token()}}"}).done(function(){
-					location.reload();
-				}).fail(function(){
-					alert('Không thể hoàn thành thao tác này');
-				})
-      }
-		})
-	})
-</script>
 <script type="text/javascript" src="{{asset('js/changeLoaiTin.js')}}"></script>
 @include('master.script')
 @endsection

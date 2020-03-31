@@ -9,10 +9,18 @@ use Illuminate\Support\Str;
 
 class tintucController extends Controller
 {
-    public function getList(){
-    	$tintuc = tintuc::join('loaitin','tintuc.idLoaiTin','loaitin.id')
-    			->orderBy('created_at','desc')
-    			->select('tintuc.id','tintuc.tieude','tintuc.img','tintuc.tenkhongdau','tintuc.slide','loaitin.tenloaitin','tintuc.created_at','tintuc.thongbaochinh')->get();
+    public function getList(Request $request){
+    	if(!isset($request->search)){
+        $tintuc = tintuc::join('loaitin','tintuc.idLoaiTin','loaitin.id')
+      			->orderBy('created_at','desc')
+      			->select('tintuc.id','tintuc.tieude','tintuc.img','tintuc.tenkhongdau','tintuc.slide','loaitin.tenloaitin','tintuc.created_at','tintuc.thongbaochinh')->get();
+      }
+      else{
+        $tintuc = tintuc::join('loaitin','tintuc.idLoaiTin','loaitin.id')
+            ->where('tintuc.tieude','like','%'.$request->search.'%')
+      			->orderBy('created_at','desc')
+      			->select('tintuc.id','tintuc.tieude','tintuc.img','tintuc.tenkhongdau','tintuc.slide','loaitin.tenloaitin','tintuc.created_at','tintuc.thongbaochinh')->get();
+      }
     	return view('admin.tintuc.list',['tintuc'=>$tintuc]);
     }
 
@@ -85,6 +93,11 @@ class tintucController extends Controller
         $tintuc->noidung = $request->noidung;
         $tintuc->save();
         return redirect()->route('tintuc')->with('thongbao','Đã thêm thành công.');
+    }
+
+    public function delTin(Request $request){
+      $tintuc = tintuc::find($request->id);
+      $tintuc->delete();
     }
 
     public function getHome(){
